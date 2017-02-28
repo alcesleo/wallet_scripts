@@ -1,11 +1,9 @@
 require "http"
 require "json"
 require "fileutils"
-require "dotenv"
+require "dotenv/load"
 
-Dotenv.load
-
-EXPORT_PATH      = File.expand_path("~/Dropbox/apps/wallet/exports")
+EXPORT_PATH      = File.expand_path(ENV.fetch("EXPORT_PATH"))
 SUBFOLDER        = Date.today.iso8601
 FULL_EXPORT_PATH = File.join(EXPORT_PATH, SUBFOLDER)
 
@@ -31,8 +29,9 @@ def write_to_file(path, data)
   File.write(path, JSON.pretty_generate(data))
 end
 
-def export(api_path, name)
-  destination = File.join(FULL_EXPORT_PATH, name)
+def export(api_path, filename)
+  puts "Writing #{api_path} to #{filename}"
+  destination = File.join(FULL_EXPORT_PATH, filename)
   write_to_file(destination, get_json(api_path))
 end
 
