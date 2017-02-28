@@ -24,10 +24,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  dotenv
-  http
-  pg
-  sequel
+  dotenv (~> 2.2)
+  http (~> 2.0)
+  pg (~> 0.19)
+  sequel (~> 4.43)
 
 BUNDLED WITH
    1.14.3
